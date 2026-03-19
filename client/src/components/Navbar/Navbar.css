@@ -2,17 +2,41 @@ nav {
     display: flex;
     padding-left: 75px;
     padding-right: 75px;
+    background-color: #131e3a;
+    color:
 }
 
 .select {
-    border: 1px dashed red;
-    height: 40px; 
     margin-left: auto;
     margin-top: auto;
     margin-bottom: auto;
-    width: 150px;
+    position: relative;
+    width: 210px;
+
+.dropdown-header {
+    padding: 10px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fce205;
+    color: #131e3a;
 }
 
-.dropdown option {
-    font-size: 18px;
+.dropdown-menu {
+    position: absolute;
+    top: 45px;
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    background-color: #131e3a;
+}
+
+.dropdown-item {
+    padding: 10px;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.dropdown-items:hover {
+    background-color: #444
 }
