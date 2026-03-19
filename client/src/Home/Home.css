@@ -1,0 +1,17 @@
+.home-container {
+    border: 1px dashed red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    padding: 100px;
+}
+
+.lottery-drawings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid black;
+    width:25%;
+    padding: 30px;
+}
