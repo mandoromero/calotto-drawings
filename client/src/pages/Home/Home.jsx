@@ -1,6 +1,6 @@
 import "./Home.css";
 import { useEffect, useState } from "react";
-import { supperLotto } from "../../services/api";
+import { getSuperLotto } from "../../services/api.js";
 
 function Home() {
     const [superLotto, setSuperLotto] = useState(null);
@@ -13,7 +13,7 @@ function Home() {
         try {
             const superRes = await getSuperLotto();
 
-            setSuperLotto(superRes.date[0]);
+           setSuperLotto(superRes.data[0]);
         } catch (err) {
             console.error(err);
         }
@@ -22,13 +22,17 @@ function Home() {
     return (
         <div className="home-container">
 
-            {superLotto &&  (
-                <div className="lottery-drawings" id="home-super-lotto">
-                    <h2 className="lotto-title" id="super-lotto-title">Super Lotto</h2>
-                    <p className="home-date"><strong>Date:</strong> {superLotto.DrawDate}</p>
-                    <p className="home-numbers"><strong>Numbers:</strong> {superLotto.DrawNumbers}</p>
-                </div>
-            )}
+            <div className="lottery-drawings" id="home-super-lotto">
+                <h2 className="lotto-title" id="super-lotto-title">Super Lotto</h2>
+                <p className="home-date">
+                    <strong>Date:</strong>{" "}
+                    {superLotto ? superLotto.DrawDate : "Loading..."}
+                </p>
+                <p className="home-numbers">
+                    <strong>Numbers:</strong>{" "}
+                    {superLotto ? superLotto.DrawNumbers : "Loading..."}
+                </p>         
+            </div>
 
             <div className="lottery-drawings" id="home-power-ball">
                 <h2 className="lotto-title" id="power-ball-title">Power Ball</h2>
