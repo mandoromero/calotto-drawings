@@ -1,11 +1,10 @@
 import axios from "axios";
 
-export const getSuperLotto = async () => {
+export const getLotteryData = async (gameName) => {
   try {
-    const response = await axios.get("/superlotto"); // backend endpoint
+    const response = await axios.get(`/api/lotto/${encodeURIComponent(gameName)}`);
     return response.data;
-  } catch (error) {
-    console.error("Error fetching SuperLotto data:", error);
-    throw error
+  } catch (err) {
+    throw new Error(err.response?.data?.error || err.message);
   }
 };

@@ -6,10 +6,9 @@ export default function Navbar() {
 
   return (
     <nav>
-      <h1>Calif. Lotto Drawings</h1>
+      <h2 className="main-title">Calif. Lotto Drawings</h2>
 
       <div className="select">
-        {/* Selected value */}
         <div 
           className="dropdown-header"
           onClick={() => setOpen(!open)}

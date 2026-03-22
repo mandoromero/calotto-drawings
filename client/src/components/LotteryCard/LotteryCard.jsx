@@ -1,44 +1,66 @@
 import "../LotteryCard/LotteryCard.css";
-import { useState, useEffect } from "react";
-import { getSuperLotto } from "../../services/api";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchLotteryGame } from "../../store/lotterySlice";
 
-export default function LotteryCard({ title }) {
-    const [lotteryData, setLotteryData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+export default function LotteryCard({ gameName }) {
+  const dispatch = useDispatch();
 
-    useEffect (() => {
-        const fetchLottery = async () => {
-            try {
-                setLoading(true);
-                const data = await getSuperLotto();
-                const latestDraw = data?.DrawResults?.[0];
+  // Get this specific game's state from Redux
+  const gameState = useSelector((state) => state.lottery.games[gameName]);
 
-                if (latestDraw) {
-                    setSuperLotto({
-                        DrawDate: latestDraw.DrawDate,
-                        DrawNumbers: latestDraw.WinningNumbers.joint(", ")
-                    });
-                } 
-            } catch (error) {
-                console.error("Error fetching Super Lottoe:", error);
-            }
-        };
-        
-        fetchLottery();
-    }, []);
+  const data = gameState?.data;
+  const loading = gameState?.loading;
+  const error = gameState?.error;
 
+  // Fetch only if we don't already have data
+  useEffect(() => {
+    if (!data && !loading) {
+      dispatch(fetchLotteryGame(gameName));
+    }
+  }, [dispatch, gameName]);
+
+  // 🔄 Loading state
+  if (loading) {
     return (
-        <div className="lottery-card-container">
-            <h2 className="lotto-title" id="super-lotto-title">Super Lotto</h2>
-            <p className="latest-draw-date">
-                <strong>Date:</strong>{" "}
-                {superLotto ? superLotto.DrawDate : "Loading..."}
-            </p>
-            <p className="home-numbers">
-                <strong>Numbers:</strong>{" "}
-                {superLotto ? superLotto.DrawNumbers : "Loading..."}
-            </p>         
-        </div>
-    )
+      <div className="lottery-card-container">
+        <h2 className="lotto-title">{gameName}</h2>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  // ❌ Error state
+  if (error) {
+    return (
+      <div className="lottery-card-container">
+        <h2 className="lotto-title">{gameName}</h2>
+        <p style={{ color: "red" }}>Error: {error}</p>
+      </div>
+    );
+  }
+
+  // ⛔ No data yet
+  if (!data) return null;
+
+  // 🎯 Get latest draw
+  const latest = data?.DrawResults?.[0];
+
+  return (
+    <div className="lottery-card-container">
+      <h2 className="lotto-title">{gameName}</h2>
+
+      <p className="latest-draw-date">
+        <strong>Date:</strong>{" "}
+        {latest?.DrawDate || "N/A"}
+      </p>
+
+      <p className="latest-draw-numbers">
+        <strong>Numbers:</strong>{" "}
+        {Array.isArray(latest?.WinningNumbers)
+          ? latest.WinningNumbers.join(", ")
+          : latest?.WinningNumbers || "N/A"}
+      </p>
+    </div>
+  );
 }

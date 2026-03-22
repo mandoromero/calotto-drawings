@@ -1,29 +1,16 @@
-import "./Home.css";
-// import { useEffect, useState } from "react";
-// import { getSuperLotto } from "../../services/api.js";
-// import LotteryCard from "../../components/LotteryCard/LotteryCard.jsx";
+import "../Home/Home.css";
+import LotteryCard from "../../components/LotteryCard/LotteryCard"
 
 export default function Home() {
-    // const [superLotto, setSuperLotto] = useState(null);
-
-    // useEffect(() => {
-    //     fetchAll();
-    // }, []);
-
-    // const fetchAll = async () =>{
-    //     try {
-    //         const superRes = await getSuperLotto();
-
-    //        setSuperLotto(superRes.data[0]);
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
+    const games = ["Super Lotto Plus", "Power Ball", "Mega Millions"];
 
     return (
         <div className="home-container">
-            <LotteryCard />
-        </div>    
+            <h1 className="title">Welcome to the Home Page</h1>
+                <LotteryCard gameName="Super Lotto Plus" />
+                <LotteryCard gameName="Power Ball" />
+                <LotteryCard gameName="Mega Million" />
+        </div>
     )
 }
 

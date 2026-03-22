@@ -1,8 +1,10 @@
-body {
+html, body, #root {
+  height 100%;
   margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  font-family: sans-serif;
-  background: #0437F2;
-background: linear-gradient(145deg, rgba(4, 55, 242, 1) 17%, rgba(255, 121, 0, 1) 53%, rgba(4, 55, 242, 1) 90%);
+}
+
+body {
+  background: linear-gradient(145deg, rgba(4, 55, 242, 1) 17%, rgba(255, 121, 0, 1) 53%, rgba(4, 55, 242, 1) 90%);
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
 }
