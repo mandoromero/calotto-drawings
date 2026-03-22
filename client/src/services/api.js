@@ -1,7 +1,11 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://localhost:5000/api",
-});
-
-export const getSuperLotto = () => API.get("/lotto/superlotto");
+export const getSuperLotto = async () => {
+  try {
+    const response = await axios.get("/superlotto"); // backend endpoint
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching SuperLotto data:", error);
+    throw error
+  }
+};
