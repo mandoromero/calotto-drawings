@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../Navbar/Navbar.css";
 
 export default function Navbar() {
@@ -19,7 +20,10 @@ export default function Navbar() {
         {/* Dropdown menu */}
         {open && (
           <div className="dropdown-menu">
-            <div className="dropdown-item">Super Lotto</div>
+            <Link to="/super-lotto-plus" className="dropdown-item">
+              Super Lotto Plus
+            </Link>
+    
             <div className="dropdown-item">Power Ball</div>
             <div className="dropdown-item">Mega Millions</div>
           </div>

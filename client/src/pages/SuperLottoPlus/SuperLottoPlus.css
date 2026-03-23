@@ -1,0 +1,22 @@
+.super-lotto-plus-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.super-lotto-plus-title {
+    margin-top: 150px;
+    font-size: 3.5rem;
+}
+
+.draw-date-latest {
+    font-size: 1.5rem;
+}
+
+.draw-numbers-latest-title {
+    font-size: 1.5rem;
+}
+
+.draw-numbers-latest {
+    font-size: 5rem;
+}
