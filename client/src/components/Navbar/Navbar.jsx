@@ -24,7 +24,9 @@ export default function Navbar() {
               Super Lotto Plus
             </Link>
     
-            <div className="dropdown-item">Power Ball</div>
+            <Link to="/powerball" className="dropdown-item">
+              Power Ball
+            </Link>
             <div className="dropdown-item">Mega Millions</div>
           </div>
         )}

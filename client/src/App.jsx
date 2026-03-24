@@ -2,7 +2,8 @@
 import Home from "../src/pages/Home/Home";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import SuperLottoPlus from "../src/pages/SuperLottoPlus/SuperLottoPlus";
+import SuperLottoPlus from "../src/pages/Drawings/SuperLottoPlus";
+import Powerball from "../src/pages/Drawings/Powerball";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />  
                 <Route path="/super-lotto-plus" element={<SuperLottoPlus />} />  
+                <Route path="/powerball" elemenmt={<Powerball />} />
             </Routes> 
         </div>
     );

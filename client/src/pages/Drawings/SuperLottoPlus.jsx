@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLotteryGame } from "../../store/lotterySlice";
 import PastResults from "../../components/PastResults/PastResults";
-import "./SuperLottoPlus.css";
+import "../Drawings/Drawings.css";
 
 export default function SuperLottoPlus() {
     const dispatch = useDispatch();
     const gameName = "Super Lotto Plus";
 
-    // Grab the game state from Redux
     const gameState = useSelector(
         (state) => state.lottery?.games?.[gameName]
     );
@@ -17,14 +16,12 @@ export default function SuperLottoPlus() {
     const loading = gameState?.loading;
     const error = gameState?.error;
 
-    // Fetch data if not already loaded
     useEffect(() => {
         if (!data && !loading) {
             dispatch(fetchLotteryGame(gameName));
         }
     }, [dispatch, data, loading, gameName]);
 
-    // Handle loading and errors
     if (loading) return <p>Loading Super Lotto Plus...</p>;
     if (error) return <p>Error: {error}</p>;
     if (!data) return <p>No data available yet...</p>;
@@ -33,11 +30,11 @@ export default function SuperLottoPlus() {
     const latest = results?.[0];
 
     return (
-        <div className="super-lotto-plus-container">
-            <h2 className="super-lotto-plus-title">{gameName}</h2>
+        <div className="drawing-container">
+            <h2 className="drawings-title">{gameName}</h2>
 
             {/* Latest draw */}
-            <div className="super-lotto-plus">
+            <div className="drawing">
                 <p className="draw-date-latest">
                     <strong>Date: </strong>
                     {latest?.DrawDate || "N/A"}
