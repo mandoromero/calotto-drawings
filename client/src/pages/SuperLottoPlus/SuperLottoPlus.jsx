@@ -29,8 +29,8 @@ export default function SuperLottoPlus() {
     if (error) return <p>Error: {error}</p>;
     if (!data) return <p>No data available yet...</p>;
 
-    // Latest draw (first item in the array)
-    const latest = data?.DrawResults?.[0] || data?.[0];
+    const results = data?.DrawResults || data;
+    const latest = results?.[0];
 
     return (
         <div className="super-lotto-plus-container">
@@ -51,8 +51,7 @@ export default function SuperLottoPlus() {
                 </p>
             </div>
 
-            {/* Past results for last 3 months */}
-            <PastResults data={data} title="Past 3 Months" />
+            <PastResults data={data} />
         </div>
     );
 }

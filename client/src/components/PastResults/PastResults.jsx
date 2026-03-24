@@ -1,40 +1,51 @@
-import "./PastResults.css";
+import "../PastResults/PastResults.css";
 
-export default function PastResults({ data, title = "Past 3 Months" }) {
-  if (!data) return null;
+export default function PastResults({ data }) {
+  if (!data) return <p>No past results available.</p>;
 
-  // Handle both possible API shapes
+  // Handle both API shapes
   const results = data?.DrawResults || data;
 
-  // Get last 3 months
-  const PastResults = new Date();
-  PastResults.setMonth(PastResults.getMonth() - 3);
+  if (!Array.isArray(results)) {
+    return <p>Invalid data format</p>;
+  }
 
-  const filteredResults = (results || [])
+  // Get last 3 months
+  const previousResults = new Date();
+  previousResults.setMonth(previousResults.getMonth() - 3);
+
+  const filteredResults = results
     .filter((draw) => {
       const drawDate = new Date(draw.DrawDate);
-      return drawDate >= PastResults;
+      return drawDate >= previousResults;
     })
     .sort((a, b) => new Date(b.DrawDate) - new Date(a.DrawDate));
+
+    console.log("PastResults recieived data:", data);
+    console.log("Results:", results);
 
   return (
     <div className="past-results-container">
       <h3>{title}</h3>
 
       <div className="results-scroll">
-        {filteredResults.map((draw, index) => (
-          <div key={index} className="result-row">
-            <p className="result-date">
-              <strong>{draw.DrawDate}</strong>
-            </p>
+        {filteredResults.length === 0 ? (
+          <p>No recent results found.</p>
+        ) : (
+          filteredResults.map((draw, index) => (
+            <div key={index} className="result-row">
+              <p className="result-date">
+                <strong>{draw.DrawDate}</strong>
+              </p>
 
-            <p className="result-numbers">
-              {Array.isArray(draw.WinningNumbers)
-                ? draw.WinningNumbers.join(", ")
-                : draw.WinningNumbers || "N/A"}
-            </p>
-          </div>
-        ))}
+              <p className="result-numbers">
+                {Array.isArray(draw.WinningNumbers)
+                  ? draw.WinningNumbers.join(", ")
+                  : draw.WinningNumbers || "N/A"}
+              </p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
