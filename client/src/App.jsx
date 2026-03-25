@@ -14,7 +14,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />  
                 <Route path="/super-lotto-plus" element={<SuperLottoPlus />} />  
-                <Route path="/powerball" elemenmt={<Powerball />} />
+                <Route path="/powerball" element={<Powerball />} />
             </Routes> 
         </div>
     );
