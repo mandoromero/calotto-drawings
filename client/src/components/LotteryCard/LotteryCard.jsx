@@ -2,12 +2,13 @@ import "../LotteryCard/LotteryCard.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLotteryGame } from "../../store/lotterySlice";
+import { normalize } from "../../utils/index";
 
 export default function LotteryCard({ gameName }) {
   const dispatch = useDispatch();
 
   // Get this specific game's state from Redux
-  const gameState = useSelector((state) => state.lottery.games[gameName]);
+  const gameState = useSelector((state) => state.lottery.games[normalize(gameName)]);
 
   const data = gameState?.data;
   const loading = gameState?.loading;

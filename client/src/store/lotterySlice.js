@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getLotteryData } from "../services/api";
+import { normalize } from "../utils";
 
-// Async thunk to fetch a specific lottery game
 export const fetchLotteryGame = createAsyncThunk(
   "lottery/fetchGame",
   async (gameName, { rejectWithValue }) => {
@@ -14,9 +14,7 @@ export const fetchLotteryGame = createAsyncThunk(
   }
 );
 
-const initialState = {
-  games: {},     // { "Super Lotto Plus": { data, loading, error } }
-};
+const initialState = { games: {} };
 
 const lotterySlice = createSlice({
   name: "lottery",
@@ -25,16 +23,17 @@ const lotterySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchLotteryGame.pending, (state, action) => {
-        const game = action.meta.arg;
-        state.games[game] = { data: null, loading: true, error: null };
+        const key = normalize(action.meta.arg);
+        state.games[key] = { data: null, loading: true, error: null };
       })
       .addCase(fetchLotteryGame.fulfilled, (state, action) => {
-        const { gameName, data } = action.payload;
-        state.games[gameName] = { data, loading: false, error: null };
+        const key = normalize(action.payload.gameName);
+        state.games[key] = { data: action.payload.data, loading: false, error: null };
       })
       .addCase(fetchLotteryGame.rejected, (state, action) => {
-        const { gameName, error } = action.payload;
-        state.games[gameName] = { data: null, loading: false, error };
+        const key = normalize(action.payload?.gameName || action.meta.arg);
+        const error = action.payload?.error || "Unknown error";
+        state.games[key] = { data: null, loading: false, error };
       });
   },
 });

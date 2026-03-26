@@ -7,9 +7,9 @@ export default function Home() {
     return (
         <div className="home-container">
             <h1 className="title">Welcome to the Home Page</h1>
-                <LotteryCard gameName="Super Lotto Plus" />
-                <LotteryCard gameName="Power Ball" />
-                <LotteryCard gameName="Mega Million" />
+            {games.map((game) => (
+                <LotteryCard key={game} gameName={game} />
+            ))}
         </div>
     )
 }
