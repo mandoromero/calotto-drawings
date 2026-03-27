@@ -9,10 +9,13 @@ export default function Navbar() {
     <nav>
       <h2 className="main-title">Calif. Lotto Drawings</h2>
 
-      <div className="select">
+      <div 
+        className="select"
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+      >
         <div 
           className="dropdown-header"
-          onClick={() => setOpen(!open)}
         >
           Lottery Games ▼
         </div>
@@ -20,14 +23,19 @@ export default function Navbar() {
         {/* Dropdown menu */}
         {open && (
           <div className="dropdown-menu">
-            <Link to="/super-lotto-plus" className="dropdown-item">
+            <Link to="/home" className="dropdown-item" onClick={() => setOpen(false)}>
+              Home
+            </Link>
+            <Link to="/super-lotto-plus" className="dropdown-item" onClick={() => setOpen(false)}>
               Super Lotto Plus
             </Link>
     
-            <Link to="/powerball" className="dropdown-item">
+            <Link to="/powerball" className="dropdown-item" onClick={() => setOpen(false)}>
               Power Ball
             </Link>
-            <div className="dropdown-item">Mega Millions</div>
+            <Link to="/mega-millions" className="dropdown-item onClick={() => setOpen(false)}">
+              Mega Millions
+            </Link>
           </div>
         )}
       </div>

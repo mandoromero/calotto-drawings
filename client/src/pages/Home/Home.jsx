@@ -2,7 +2,7 @@ import "../Home/Home.css";
 import LotteryCard from "../../components/LotteryCard/LotteryCard"
 
 export default function Home() {
-    const games = ["Super Lotto Plus", "Power Ball", "Mega Millions"];
+    const games = ["Super Lotto Plus", "Powerball", "Mega Millions"];
 
     return (
         <div className="home-container">

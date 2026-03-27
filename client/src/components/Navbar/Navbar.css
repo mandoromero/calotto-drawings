@@ -43,6 +43,10 @@ nav {
     color: white;
 }
 
+.dropdown-item:hover {
+    color:  #b3ebf2;
+}
+
 .dropdown-items:hover {
     background-color: #444
 }

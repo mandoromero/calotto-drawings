@@ -2,8 +2,7 @@
 import Home from "../src/pages/Home/Home";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import SuperLottoPlus from "../src/pages/Drawings/SuperLottoPlus";
-import Powerball from "../src/pages/Drawings/Powerball";
+import LotteryPage from "../src/pages/LotteryPage/LotteryPage";
 
 
 function App() {
@@ -12,9 +11,11 @@ function App() {
         <div>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />  
-                <Route path="/super-lotto-plus" element={<SuperLottoPlus />} />  
-                <Route path="/powerball" element={<Powerball />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/super-lotto-plus" element={<LotteryPage gameName="Super Lotto Plus" />} />
+                <Route path="/powerball" element={<LotteryPage gameName="Powerball" />} />
+                <Route path="/mega-millions" element={<LotteryPage gameName="Mega Millions" />} />
             </Routes> 
         </div>
     );

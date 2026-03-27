@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLotteryGame } from "../../store/lotterySlice";
 import { normalize } from "../../utils/index";
+import { Link } from "react-router-dom";
 
 export default function LotteryCard({ gameName }) {
   const dispatch = useDispatch();
@@ -25,7 +26,9 @@ export default function LotteryCard({ gameName }) {
   if (loading) {
     return (
       <div className="lottery-card-container">
-        <h2 className="lotto-title">{gameName}</h2>
+        <Link to={`/${normalize(gameName)}`} className="lotto-title-link">
+          <h2 className="lotto-title">{gameName}</h2>
+        </Link>
         <p>Loading...</p>
       </div>
     );

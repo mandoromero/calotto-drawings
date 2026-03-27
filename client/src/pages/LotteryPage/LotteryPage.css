@@ -1,22 +1,22 @@
-.drawing-container {
+.lottery-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.drawing-title {
+.lottery-title {
     margin-top: 150px;
     font-size: 3.5rem;
 }
 
-.draw-date-latest {
+.lottery-date-latest {
     font-size: 1.5rem;
 }
 
-.draw-numbers-latest-title {
+.lottery-numbers-latest-title {
     font-size: 1.5rem;
 }
 
-.draw-numbers-latest {
+.lottery-numbers-latest {
     font-size: 5rem;
 }
