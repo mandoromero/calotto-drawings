@@ -1,7 +1,7 @@
 // import { Routes, Route, Link } from "react-router-dom";
 import Home from "../src/pages/Home/Home";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "../src/components/Navbar/Navbar";
 import LotteryPage from "../src/pages/LotteryPage/LotteryPage";
 
 

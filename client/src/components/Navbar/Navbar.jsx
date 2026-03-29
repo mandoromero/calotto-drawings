@@ -20,11 +20,22 @@ export default function Navbar() {
           Lottery Games ▼
         </div>
 
-        {/* Dropdown menu */}
         {open && (
           <div className="dropdown-menu">
             <Link to="/home" className="dropdown-item" onClick={() => setOpen(false)}>
               Home
+            </Link>
+            <Link to="/daily-derby" className="dropdown-item" onClick={() => setOpen(false)}>
+             Daily Derby
+            </Link>
+            <Link to="/daily-3" className="dropdown-item" onClick={() => setOpen(false)}>
+              Daily 3
+            </Link>
+            <Link to="/daily-4" className="dropdown-item" onClick={() => setOpen(false)}>
+              Daily 4
+            </Link>
+            <Link to="/fantasy-5" className="dropdown-item" onClick={() => setOpen(false)}>
+              Fantasy 5
             </Link>
             <Link to="/super-lotto-plus" className="dropdown-item" onClick={() => setOpen(false)}>
               Super Lotto Plus

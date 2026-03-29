@@ -3,10 +3,15 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import axios from "axios";
-import { normalize } from "../utils/index.js"; 
+import { normalize } from "../utils/index.js";
 
 const router = express.Router();
 
+router.get("/:game", async (req,res) => {
+  console.log("ROUTE HIT:",req.params.game);
+})
+
+// File paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const CACHE_FILE = path.join(__dirname, "lotteryCache.json");
@@ -23,7 +28,7 @@ try {
   console.error("Failed to read cache from disk:", err.message);
 }
 
-// Async save cache to disk
+// Save cache (async)
 function saveCache() {
   fs.writeFile(CACHE_FILE, JSON.stringify(cache, null, 2), (err) => {
     if (err) console.error("Cache save failed:", err);
@@ -31,28 +36,43 @@ function saveCache() {
   });
 }
 
-// Lottery games mapping
+// 🎯 Lottery games mapping
 const lotteryGames = {
+  "Daily Derby": 11,
+  "Daily 3": 9,
+  "Daily 4": 14,
+  "Fantasy 5": 10,
   "Super Lotto Plus": 8,
   "Mega Millions": 15,
   "Powerball": 12,
 };
 
+// ⚡ Optimized lookup map
+const normalizedGameMap = Object.fromEntries(
+  Object.entries(lotteryGames).map(([name, id]) => [
+    normalize(name),
+    { name, id },
+  ])
+);
+
 // Fetch a single game
 export async function fetchGameData(gameName, gameId) {
   try {
     const key = normalize(gameName);
+
     const todayPST = new Date(
-      new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })
+      new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      })
     ).toDateString();
 
+    // Skip if already fetched today
     if (cache[key]?.lastFetchDate === todayPST) {
       console.log(`${gameName} already fetched today. Skipping.`);
       return;
     }
 
-    console.log(`Fetching ${gameName} data...`);
-    console.log("API KEY:", process.env.RAPIDAPI_KEY);
+    console.log(`Fetching ${gameName}...`);
 
     const options = {
       method: "GET",
@@ -60,7 +80,6 @@ export async function fetchGameData(gameName, gameId) {
       headers: {
         "x-rapidapi-key": process.env.RAPIDAPI_KEY,
         "x-rapidapi-host": "ca-lottery.p.rapidapi.com",
-        "Content-Type": "application/json",
       },
       params: { DrawGame: gameName },
     };
@@ -73,39 +92,39 @@ export async function fetchGameData(gameName, gameId) {
     };
 
     saveCache();
-    console.log(`${gameName} data updated successfully.`);
+
+    console.log(`${gameName} updated.`);
   } catch (error) {
-    console.error(`API ERROR for ${gameName}:`, error.response?.data || error.message);
+    console.error(
+      `API ERROR for ${gameName}:`,
+      error.response?.data || error.message
+    );
   }
 }
 
-// Fetch all games
+// Fetch all games (with delay to avoid rate limit)
 export async function fetchAllGames() {
-  for (const [name, id] of queryObjects.entries(lotteryGames)) {
+  for (const [name, id] of Object.entries(lotteryGames)) {
     await fetchGameData(name, id);
 
+    // ⏱ delay to prevent "Too many requests"
     await new Promise((res) => setTimeout(res, 1500));
   }
 }
 
-
-// API route: GET /api/lotto/:game
+// 🚀 API route: GET /api/lotto/:game
 router.get("/:game", async (req, res) => {
-  const gameName = req.params.game;
-  const key = normalize(gameName);
+  const key = normalize(req.params.game);
 
-  const gameEntry = Object.entries(lotteryGames).find(
-    ([name]) => normalize(name) === key
-  );
+  const game = normalizedGameMap[key];
 
-  if (!gameEntry) {
+  if (!game) {
     return res.status(404).json({ error: "Invalid game name" });
   }
 
-  const [realName, gameId] = gameEntry;
+  console.log("Matched Game:", game.name, "ID:", game.id);
 
-  // 🔹 fetchGameData is async, so we need await
-  await fetchGameData(realName, gameId);
+  await fetchGameData(game.name, game.id);
 
   const gameData = cache[key];
 

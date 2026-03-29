@@ -8,6 +8,15 @@
     margin-bottom: 75px;
 }
 
+.lottery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    max-with: 1000px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
 .title {
     font-size: 40px;
     margin-bottom: 25px;

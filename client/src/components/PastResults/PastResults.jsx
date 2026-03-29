@@ -1,16 +1,14 @@
 import "../PastResults/PastResults.css";
 
-export default function PastResults({ data }) {
+export default function PastResults({ data, title }) {
   if (!data) return <p>No past results available.</p>;
 
-  // Handle both API shapes
   const results = data?.DrawResults || data;
 
   if (!Array.isArray(results)) {
     return <p>Invalid data format</p>;
   }
 
-  // Get last 3 months
   const previousResults = new Date();
   previousResults.setMonth(previousResults.getMonth() - 3);
 
@@ -26,7 +24,7 @@ export default function PastResults({ data }) {
 
   return (
     <div className="past-results-container">
-      <h3>{title}</h3>
+      <h3>{title} - Past Results</h3>
 
       <div className="results-scroll">
         {filteredResults.length === 0 ? (

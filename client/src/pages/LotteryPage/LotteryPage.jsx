@@ -41,6 +41,7 @@ export default function LotteryPage({ gameName }) {
 
   return (
     <div className="lottery-container">
+
       <h2 className="lottery-title">{gameName}</h2>
 
       <div className="lottery">
@@ -57,7 +58,7 @@ export default function LotteryPage({ gameName }) {
         </p>
       </div>
 
-      <PastResults data={data} />
+      <PastResults data={data} title={gameName} />
     </div>
   );
 }
