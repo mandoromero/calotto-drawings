@@ -6,3 +6,4 @@ export const normalize = (str) => {
         .replace(/\s+/g, "-")
         .replace(/[^\w-]/g, "");
 };
+

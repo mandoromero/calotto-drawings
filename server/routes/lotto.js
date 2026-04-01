@@ -34,11 +34,11 @@ function saveCache() {
 
 // 🎯 Lottery games mapping
 const lotteryGames = {
-  "Daily Derby": 11,
-  "Daily 3": 9,
-  "Daily 4": 14,
-  "Fantasy 5": 10,
-  "Super Lotto Plus": 8,
+  // "Daily Derby": 11,
+  // "Daily 3": 9,
+  // "Daily 4": 14,
+  // "Fantasy 5": 10,
+  // "Super Lotto Plus": 8,
   "Mega Millions": 15,
   "Powerball": 12,
 };
@@ -89,66 +89,40 @@ export async function fetchGameData(gameName, gameId) {
       error.response?.data || error.message
     );
   }
-
-  router.get("/:game", async (req, res) => {
-  const key = normalize(req.params.game);
-  const game = normalizedGameMap[key];
-
-  if (!game) {
-    return res.status(404).json({ error: "Invalid game name" });
-  }
-
-  const todayPST = new Date().toLocaleDateString("en-US", {
-    timeZone: "America/Los_Angeles",
-  });
-
-  // ✅ Use cache if fresh
-  if (cache[key] && cache[key].lastFetchDate === todayPST) {
-    console.log("Serving from cache");
-    return res.json(cache[key].data);
-  }
-
-  await fetchGameData(game.name, game.id);
-
-  if (!cache[key]) {
-    return res.status(500).json({ error: "Failed to fetch data" });
-  }
-
-  res.json(cache[key].data);
-});
 }
 
 // Fetch all games (with delay to avoid rate limit)
 export async function fetchAllGames() {
   for (const [name, id] of Object.entries(lotteryGames)) {
     await fetchGameData(name, id);
-
-    // ⏱ delay to prevent "Too many requests"
-    await new Promise((res) => setTimeout(res, 1500));
+    // ⏱ delay to prevent rate limit
+    await new Promise((res) => setTimeout(res, 20000));
   }
 }
 
 // 🚀 API route: GET /api/lotto/:game
-router.get("/:game", async (req, res) => {
+router.get("/:game", (req, res) => {
   const key = normalize(req.params.game);
-
   const game = normalizedGameMap[key];
 
   if (!game) {
     return res.status(404).json({ error: "Invalid game name" });
   }
 
-  console.log("Matched Game:", game.name, "ID:", game.id);
-
-  await fetchGameData(game.name, game.id);
-
   const gameData = cache[key];
 
   if (!gameData) {
-    return res.status(500).json({ error: "Failed to fetch data" });
+    return res.status(503).json({ error: "Data not ready yet" });
   }
 
   res.json(gameData.data);
 });
+
+// 🚀 Preload all data on server start
+(async () => {
+  console.log("🚀 Preloading lottery data...");
+  await fetchAllGames();
+  console.log("✅ Lottery cache ready");
+})();
 
 export default router;
