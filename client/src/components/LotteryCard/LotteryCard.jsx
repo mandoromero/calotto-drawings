@@ -5,7 +5,7 @@ import { fetchLotteryGame } from "../../store/lotterySlice";
 import { normalize } from "../../utils/index";
 import { Link } from "react-router-dom";
 
-export default function LotteryCard({ gameName }) {
+ export default function LotteryCard({ gameName }) {
   const dispatch = useDispatch();
 
   const gameState = useSelector((state) => state.lottery.games[normalize(gameName)]);
@@ -43,12 +43,12 @@ export default function LotteryCard({ gameName }) {
 
   return (
     <div className="lottery-card-container">
-      <Link to={`$/{normalize(gameName)}`} className="lotto-title-link">
+      <Link to={`/{normalize(gameName)}`} className="lotto-title-link">
         <h2 className="lotto-title">{gameName}</h2>
       </Link>
       <p className="latest-draw-date">
         <strong>Date:</strong>{" "}
-        {latest?.DrawDate || "N/A"}
+          {latest?.DrawDate || "N/A"}
       </p>
 
       <p className="latest-draw-numbers">

@@ -7,10 +7,6 @@ import { normalize } from "../utils/index.js";
 
 const router = express.Router();
 
-router.get("/:game", async (req,res) => {
-  console.log("ROUTE HIT:",req.params.game);
-})
-
 // File paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -57,22 +53,14 @@ const normalizedGameMap = Object.fromEntries(
 
 // Fetch a single game
 export async function fetchGameData(gameName, gameId) {
+  const key = normalize(gameName);
+
   try {
-    const key = normalize(gameName);
-
-    const todayPST = new Date(
-      new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      })
-    ).toDateString();
-
-    // Skip if already fetched today
-    if (cache[key]?.lastFetchDate === todayPST) {
-      console.log(`${gameName} already fetched today. Skipping.`);
-      return;
-    }
-
     console.log(`Fetching ${gameName}...`);
+
+    const todayPST = new Date().toLocaleDateString("en-US", {
+      timeZone: "America/Los_Angeles",
+    });
 
     const options = {
       method: "GET",
@@ -80,6 +68,7 @@ export async function fetchGameData(gameName, gameId) {
       headers: {
         "x-rapidapi-key": process.env.RAPIDAPI_KEY,
         "x-rapidapi-host": "ca-lottery.p.rapidapi.com",
+        "content-type": "application/json",
       },
       params: { DrawGame: gameName },
     };
@@ -100,6 +89,33 @@ export async function fetchGameData(gameName, gameId) {
       error.response?.data || error.message
     );
   }
+
+  router.get("/:game", async (req, res) => {
+  const key = normalize(req.params.game);
+  const game = normalizedGameMap[key];
+
+  if (!game) {
+    return res.status(404).json({ error: "Invalid game name" });
+  }
+
+  const todayPST = new Date().toLocaleDateString("en-US", {
+    timeZone: "America/Los_Angeles",
+  });
+
+  // ✅ Use cache if fresh
+  if (cache[key] && cache[key].lastFetchDate === todayPST) {
+    console.log("Serving from cache");
+    return res.json(cache[key].data);
+  }
+
+  await fetchGameData(game.name, game.id);
+
+  if (!cache[key]) {
+    return res.status(500).json({ error: "Failed to fetch data" });
+  }
+
+  res.json(cache[key].data);
+});
 }
 
 // Fetch all games (with delay to avoid rate limit)
