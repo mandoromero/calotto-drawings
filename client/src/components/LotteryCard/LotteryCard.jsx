@@ -5,11 +5,11 @@ import { fetchLotteryGame } from "../../store/lotterySlice";
 import { normalize } from "../../utils/index";
 import { Link } from "react-router-dom";
 
- export default function LotteryCard({ gameName }) {
+export default function LotteryCard({ gameName }) {
   const dispatch = useDispatch();
 
   const gameState = useSelector(
-    (state) => state.lottery.games[normalize(gameName)]
+    (state) => state.lottery?.games?.[normalize(gameName)]
   );
 
   const data = gameState?.data;
@@ -39,6 +39,7 @@ import { Link } from "react-router-dom";
       </div>
     );
   }
+
   if (!data || data.length === 0) return null;
 
   const latest = data[0];
@@ -53,21 +54,27 @@ import { Link } from "react-router-dom";
         <strong>Date:</strong> {latest?.drawDate || "N/A"}
       </p>
 
-      <p className="latest-draw-numbers">
-        <strong>Numbers:</strong>{" "}
-        {Array.isArray(latest?.numbers)
-          ? latest.numbers.join(", ")
-          : latest?.numbers || "N/A"}
-      </p>
+      <div className="latest-draw-numbers">
+        <strong>Numbers:</strong>
 
-      <p className="latest-draw-bonus">
-        <strong>Bonus:</strong>{" "}
-        {latest?.bonus || "N/A"}
-      </p>
-
-      <p className="latest-draw-jackpot">
-        <strong>Jackpot:</strong> {latest?.jackpot || "N/A"}
-      </p>
+        <div className="balls-row">
+          <div className="regular-balls">
+            {latest?.numbers?.map((num, i) => (
+              <span key={i} className="ball white-ball">
+                <strong>{num}</strong>
+              </span>
+            ))}
+          </div>
+          <div className="balls-bonus">
+            <p className="bonus-p"><strong>Bonus: </strong></p>
+            {latest?.bonus && (
+              <span className="ball bonus-ball">
+                <strong>{latest.bonus}</strong>
+              </span>
+            )}
+          </div> 
+        </div>
+      </div>
     </div>
   );
 }

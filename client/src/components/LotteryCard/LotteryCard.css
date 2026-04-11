@@ -28,8 +28,63 @@
     color: #b3ebf2;
 }
 
-.latest-draw-date, .latest-draw-numbers {
-    color: #131e3a;
-    font-size: 1.5rem;
+.latest-draw-date {
+    font-size: 1.3rem;
+}
+
+.balls-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.regular-balls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.balls-bonus {
+    display: flex;
+    flex-directioin: row;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.balls-bonus-p {
+    margin-right: 20px;
+}
+
+.ball {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px; 
+    margin: 4px;
+    border: 1px solid black;
+    border-radius: 50%;
+    font-size: 14px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transition: transform 0.2s ease;
+}
+
+.white-ball {
+    background: white;
+    border: 2px solid #333;
+    color: #333;
+    font-size: 1.3rem;
     margin-bottom: 0;
 }
+
+.bonus-ball {
+    color: #131e3a;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+}
+
