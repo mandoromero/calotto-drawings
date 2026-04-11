@@ -9,8 +9,9 @@
 }
 
 .lottery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 50px;
     max-with: 1000px;
     margin: 0 auto;
