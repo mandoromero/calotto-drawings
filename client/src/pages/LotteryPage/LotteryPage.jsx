@@ -7,7 +7,6 @@ import "../LotteryPage/LotteryPage.css";
 
 export default function LotteryPage({ gameName }) {
   const dispatch = useDispatch();
-
   const key = normalize(gameName);
 
   const gameState = useSelector(
@@ -24,37 +23,35 @@ export default function LotteryPage({ gameName }) {
     }
   }, [dispatch, data, loading, gameName]);
 
-  if (loading) {
-    return <p>Loading {gameName}...</p>;
-  }
+  if (loading) return <p>Loading {gameName}...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!data || !data.length) return <p>No data available...</p>;
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
-
-  if (!data) {
-    return <p>No data available yet...</p>;
-  }
-
-  const results = data?.DrawResults || data;
-  const latest = results?.[0];
+  const latest = data[0];
 
   return (
     <div className="lottery-container">
-
       <h2 className="lottery-title">{gameName}</h2>
 
       <div className="lottery">
         <p className="lottery-date-latest">
           <strong>Date: </strong>
-          {latest?.DrawDate || "N/A"}
+          {latest?.drawDate || "N/A"}
         </p>
 
         <p className="lottery-number-latest">
-          <strong>Numbers: </strong>{" "}
-          {Array.isArray(latest?.WinningNumbers)
-            ? latest.WinningNumbers.join(", ")
-            : latest?.WinningNumbers || "N/A"}
+          <strong>Numbers: </strong>
+          {latest?.numbers?.join(", ") || "N/A"}
+        </p>
+
+        <p className="lottery-bonus">
+          <strong>Bonus: </strong>
+          {latest?.bonus || "N/A"}
+        </p>
+
+        <p className="lottery-jackpot">
+          <strong>Jackpot: </strong>
+          {latest?.jackpot || "N/A"}
         </p>
       </div>
 

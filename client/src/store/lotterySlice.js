@@ -1,15 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getLotteryData } from "../services/api";
+import { fetchLotteryData } from "../service/lottery/service";
 import { normalize } from "../utils";
 
+// ✅ Proper async thunk
 export const fetchLotteryGame = createAsyncThunk(
   "lottery/fetchGame",
   async (gameName, { rejectWithValue }) => {
     try {
-      const data = await getLotteryData(gameName);
-      return { gameName, data };
+      const gameKey = normalize(gameName);
+
+      const data = await fetchLotteryData(gameKey);
+
+      return { gameKey, data };
     } catch (err) {
-      return rejectWithValue({ gameName, error: err.message });
+      return rejectWithValue({
+        gameKey: normalize(gameName),
+        error: err.message,
+      });
     }
   }
 );
@@ -24,16 +31,31 @@ const lotterySlice = createSlice({
     builder
       .addCase(fetchLotteryGame.pending, (state, action) => {
         const key = normalize(action.meta.arg);
-        state.games[key] = { data: null, loading: true, error: null };
+        state.games[key] = {
+          data: null,
+          loading: true,
+          error: null,
+        };
       })
+
       .addCase(fetchLotteryGame.fulfilled, (state, action) => {
-        const key = normalize(action.payload.gameName);
-        state.games[key] = { data: action.payload.data, loading: false, error: null };
+        const { gameKey, data } = action.payload;
+
+        state.games[gameKey] = {
+          data,
+          loading: false,
+          error: null,
+        };
       })
+
       .addCase(fetchLotteryGame.rejected, (state, action) => {
-        const key = normalize(action.payload?.gameName || action.meta.arg);
-        const error = action.payload?.error || "Unknown error";
-        state.games[key] = { data: null, loading: false, error };
+        const key = action.payload?.gameKey || normalize(action.meta.arg);
+
+        state.games[key] = {
+          data: null,
+          loading: false,
+          error: action.payload?.error || "Failed to fetch",
+        };
       });
   },
 });

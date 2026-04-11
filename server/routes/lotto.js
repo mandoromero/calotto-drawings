@@ -2,127 +2,70 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import axios from "axios";
-import { normalize } from "../utils/index.js";
 
 const router = express.Router();
 
-// File paths
+// Resolve __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const CACHE_FILE = path.join(__dirname, "lotteryCache.json");
 
-// Load cache from disk
-let cache = {};
+// ---------------------------
+// Load JSON data
+// ---------------------------
+const DATA_DIR = path.join(__dirname, "../data");
+const DERBY_JSON = path.join(DATA_DIR, "dailyDerbyHistory.json");
+const MEGA_JSON = path.join(DATA_DIR, "megaMillionsHistory.json");
+const POWERBALL_JSON = path.join(DATA_DIR, "powerballHistory.json");
+const SUPER_JSON = path.join(DATA_DIR, "superLottoPlusHistory.json");
+
+let derbyHistory = [];
+let megaHistory = [];
+let powerballHistory = [];
+let superLottoHistory = [];
+
 try {
-  if (fs.existsSync(CACHE_FILE)) {
-    const data = fs.readFileSync(CACHE_FILE, "utf8");
-    cache = JSON.parse(data);
-    console.log("Loaded lottery cache from disk.");
-  }
+  console.log(`✅ Daily Derby loaded: ${derbyHistory.length}`);
 } catch (err) {
-  console.error("Failed to read cache from disk:", err.message);
+  console.err("❌ Daily Derby ;oad failed:", err.message);
 }
 
-// Save cache (async)
-function saveCache() {
-  fs.writeFile(CACHE_FILE, JSON.stringify(cache, null, 2), (err) => {
-    if (err) console.error("Cache save failed:", err);
-    else console.log("Lottery cache saved to disk.");
-  });
+try {
+  megaHistory = JSON.parse(fs.readFileSync(MEGA_JSON, "utf8"));
+  console.log(`✅ Mega Millions history loaded: ${megaHistory.length} draws`);
+} catch (err) {
+  console.error("❌ Failed to load Mega Millions history:", err.message);
 }
 
-// 🎯 Lottery games mapping
-const lotteryGames = {
-  // "Daily Derby": 11,
-  // "Daily 3": 9,
-  // "Daily 4": 14,
-  // "Fantasy 5": 10,
-  // "Super Lotto Plus": 8,
-  "Mega Millions": 15,
-  "Powerball": 12,
-};
-
-// ⚡ Optimized lookup map
-const normalizedGameMap = Object.fromEntries(
-  Object.entries(lotteryGames).map(([name, id]) => [
-    normalize(name),
-    { name, id },
-  ])
-);
-
-// Fetch a single game
-export async function fetchGameData(gameName, gameId) {
-  const key = normalize(gameName);
-
-  try {
-    console.log(`Fetching ${gameName}...`);
-
-    const todayPST = new Date().toLocaleDateString("en-US", {
-      timeZone: "America/Los_Angeles",
-    });
-
-    const options = {
-      method: "GET",
-      url: `https://ca-lottery.p.rapidapi.com/DrawGamesPastDrawResults/${gameId}/1/20`,
-      headers: {
-        "x-rapidapi-key": process.env.RAPIDAPI_KEY,
-        "x-rapidapi-host": "ca-lottery.p.rapidapi.com",
-        "content-type": "application/json",
-      },
-      params: { DrawGame: gameName },
-    };
-
-    const response = await axios.request(options);
-
-    cache[key] = {
-      data: response.data,
-      lastFetchDate: todayPST,
-    };
-
-    saveCache();
-
-    console.log(`${gameName} updated.`);
-  } catch (error) {
-    console.error(
-      `API ERROR for ${gameName}:`,
-      error.response?.data || error.message
-    );
-  }
+try {
+  powerballHistory = JSON.parse(fs.readFileSync(POWERBALL_JSON, "utf8"));
+  console.log(`✅ Powerball history loaded: ${powerballHistory.length} draws`);
+} catch (err) {
+  console.error("❌ Failed to load Powerball history:", err.message);
 }
 
-// Fetch all games (with delay to avoid rate limit)
-export async function fetchAllGames() {
-  for (const [name, id] of Object.entries(lotteryGames)) {
-    await fetchGameData(name, id);
-    // ⏱ delay to prevent rate limit
-    await new Promise((res) => setTimeout(res, 20000));
-  }
+try {
+  superLottoHistory = JSON.parse(fs.readFileSync(SUPER_JSON, "utf8"));
+  console.log(`✅ Super Lotto Plus history loaded: ${superLottoHistory.length} draws`);
+} catch (err) {
+  console.error("❌ Failed to load Super Lotto Plus history:", err.message);
 }
 
-// 🚀 API route: GET /api/lotto/:game
-router.get("/:game", (req, res) => {
-  const key = normalize(req.params.game);
-  const game = normalizedGameMap[key];
-
-  if (!game) {
-    return res.status(404).json({ error: "Invalid game name" });
-  }
-
-  const gameData = cache[key];
-
-  if (!gameData) {
-    return res.status(503).json({ error: "Data not ready yet" });
-  }
-
-  res.json(gameData.data);
+// ---------------------------
+// Routes
+// ---------------------------
+router.get("/mega-millions", (req, res) => {
+  if (!megaHistory.length) return res.status(500).json({ error: "Mega Millions data not available" });
+  res.json(megaHistory);
 });
 
-// 🚀 Preload all data on server start
-(async () => {
-  console.log("🚀 Preloading lottery data...");
-  await fetchAllGames();
-  console.log("✅ Lottery cache ready");
-})();
+router.get("/powerball", (req, res) => {
+  if (!powerballHistory.length) return res.status(500).json({ error: "Powerball data not available" });
+  res.json(powerballHistory);
+});
+
+router.get("/super-lotto-plus", (req, res) => {
+  if (!superLottoHistory.length) return res.status(500).json({ error: "Super Lotto Plus data not available" });
+  res.json(superLottoHistory);
+});
 
 export default router;
