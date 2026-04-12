@@ -13,9 +13,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
-                <Route path="/super-lotto-plus" element={<LotteryPage gameName="Super Lotto Plus" />} />
-                <Route path="/powerball" element={<LotteryPage gameName="Powerball" />} />
-                <Route path="/mega-millions" element={<LotteryPage gameName="Mega Millions" />} />
+                <Route path="/:gameName" element={<LotteryPage />} />
             </Routes> 
         </div>
     );

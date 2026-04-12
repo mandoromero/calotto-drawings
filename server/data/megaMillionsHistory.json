@@ -1,9 +1,15 @@
 [
   {
+    "drawDate": "2026-04-10",
+    "numbers": ["03", "18", "36", "42", "49"],
+    "bonus": "06",
+    "jackpot": "$110 Million"
+  },
+  {
     "drawDate": "2026-04-07",
     "numbers": ["05", "15", "22", "33", "37"],
     "bonus": "02",
-    "jackpot": "$110 Million (est)"
+    "jackpot": "$100 Million"
   },
   {
     "drawDate": "2026-04-03",

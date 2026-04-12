@@ -1,26 +1,44 @@
 [
   {
-    "drawDate": "2026-04-07",
-    "numbers": ["05", "12", "23", "34", "45"],
-    "bonus": "07",
-    "jackpot": "$120 Million"
-  },
-  {
-    "drawDate": "2026-04-03",
-    "numbers": ["03", "15", "22", "30", "41"],
-    "bonus": "10",
-    "jackpot": "$100 Million"
-  },
-  {
-    "drawDate": "2026-03-31",
-    "numbers": ["08", "14", "27", "38", "44"],
-    "bonus": "12",
-    "jackpot": "$90 Million"
-  },
-  {
-    "drawDate": "2026-03-27",
-    "numbers": ["01", "09", "20", "31", "39"],
+    "drawDate": "2026-04-11",
+    "numbers": ["06", "47", "49", "53", "60"],
     "bonus": "06",
-    "jackpot": "$80 Million"
+    "jackpot": "$36.2 Million"
+  },
+  {
+    "drawDate": "2026-04-08",
+    "numbers": ["03", "16", "17", "42", "52"],
+    "bonus": "03",
+    "jackpot": "$20 Million"
+  },
+  {
+    "drawDate": "2026-04-06",
+    "numbers": ["07", "24", "37", "42", "57"],
+    "bonus": "5",
+    "jackpot": "$230.8 Million"
+  },
+  {
+    "drawDate": "2026-04-04",
+    "numbers": ["03", "06", "13", "41", "65"],
+    "bonus": "01",
+    "jackpot": "$216 Million"
+  },
+  {
+    "drawDate": "2026-04-01",
+    "numbers": ["04", "10", "11", "52", "64"],
+    "bonus": "24",
+    "jackpot": "$194.9 Million"
+  },
+  {
+    "drawDate": "2026-03-30",
+    "numbers": ["07", "11", "31", "41", "57"],
+    "bonus": "20",
+    "jackpot": "$180.3 Million"
+  },
+  {
+    "drawDate": "2026-03-28",
+    "numbers": ["11", "42", "43", "59", "61"],
+    "bonus": "25",
+    "jackpot": "$167.9 Million"
   }
 ]

@@ -2,26 +2,28 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchLotteryData } from "../service/lottery/service";
 import { normalize } from "../utils";
 
-// ✅ Proper async thunk
+// ✅ THUNK
 export const fetchLotteryGame = createAsyncThunk(
   "lottery/fetchGame",
   async (gameName, { rejectWithValue }) => {
     try {
-      const gameKey = normalize(gameName);
+      const data = await fetchLotteryData(normalize(gameName));
 
-      const data = await fetchLotteryData(gameKey);
+      console.log("API DATA:", data);
 
-      return { gameKey, data };
+      return {
+        gameName,
+        data,
+      };
     } catch (err) {
-      return rejectWithValue({
-        gameKey: normalize(gameName),
-        error: err.message,
-      });
+      return rejectWithValue(err.message);
     }
   }
 );
 
-const initialState = { games: {} };
+const initialState = {
+  games: {},
+};
 
 const lotterySlice = createSlice({
   name: "lottery",
@@ -29,8 +31,10 @@ const lotterySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // 🟡 LOADING
       .addCase(fetchLotteryGame.pending, (state, action) => {
         const key = normalize(action.meta.arg);
+
         state.games[key] = {
           data: null,
           loading: true,
@@ -38,23 +42,25 @@ const lotterySlice = createSlice({
         };
       })
 
+      // 🟢 SUCCESS
       .addCase(fetchLotteryGame.fulfilled, (state, action) => {
-        const { gameKey, data } = action.payload;
+        const key = normalize(action.payload.gameName);
 
-        state.games[gameKey] = {
-          data,
+        state.games[key] = {
+          data: action.payload.data,
           loading: false,
           error: null,
         };
       })
 
+      // 🔴 ERROR
       .addCase(fetchLotteryGame.rejected, (state, action) => {
-        const key = action.payload?.gameKey || normalize(action.meta.arg);
+        const key = normalize(action.meta.arg);
 
         state.games[key] = {
           data: null,
           loading: false,
-          error: action.payload?.error || "Failed to fetch",
+          error: action.payload || "Failed to fetch",
         };
       });
   },

@@ -1,15 +1,27 @@
 [
   {
+    "drawDate": "2026-04-11",
+    "numbers": ["01", "21", "22", "23", "39"],
+    "bonus": "13",
+    "jackpot": "$10 Million"
+  },
+  {
+    "drawDate": "2026-04-08",
+    "numbers": ["06", "10", "21", "30", "38"],
+    "bonus": "9",
+    "jackpot": "$9 Million"
+  },
+  {
     "drawDate": "2026-04-04",
     "numbers": ["03", "06", "14", "34", "43"],
     "bonus": "14",
-    "jackpot": "$8,000,000"
+    "jackpot": "$8 Million"
   },
   {
     "drawDate": "2026-04-01",
     "numbers": ["11", "20", "23", "38", "44"],
     "bonus": "25",
-    "jackpot": "$7,000,000"
+    "jackpot": "$7 Million"
   },
   {
     "drawDate": "2026-03-28",
