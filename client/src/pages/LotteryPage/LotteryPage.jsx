@@ -5,7 +5,7 @@ import { fetchLotteryGame } from "../../store/lotterySlice";
 import PastResults from "../../components/PastResults/PastResults";
 import { normalize } from "../../utils";
 import "../LotteryPage/LotteryPage.css";
-
+import Calculations from "../../components/Calculations/Calculations";
 export default function LotteryPage() {
   const dispatch = useDispatch();
   const { gameName } = useParams();
@@ -92,6 +92,8 @@ export default function LotteryPage() {
           <strong>Jackpot:</strong> {latest?.jackpot || "N/A"}
         </p>
       </div>
+
+      <Calculations />
 
       {/* PAST RESULTS */}
       <PastResults data={results} title={displayName} />

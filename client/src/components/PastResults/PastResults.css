@@ -1,6 +1,12 @@
 .past-results-container {
-    width: 35%;
+    width: 38%;
     margin-top: 20px;
+}
+
+.results-scroll {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #CCC;
 }
 
 .results-grid {
@@ -15,6 +21,8 @@
     font-weight: bold;
     border-bottom: 2px solid #000;
     margin-bottom: 10px;
+    align-items: center;
+    font-size: 1.3rem;
 }
 
 .results-grid.row {
@@ -24,6 +32,7 @@
 
 .cell {
     text-align: center;
+    font-size: 1.3rem;
 }
 
 .numbers {
