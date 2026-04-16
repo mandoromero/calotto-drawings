@@ -54,26 +54,26 @@ export default function LotteryCard({ gameName }) {
         <strong>Date:</strong> {latest?.drawDate || "N/A"}
       </p>
 
-      <div className="latest-draw-numbers">
-        <strong>Numbers:</strong>
+      <p className="latest-draw-numbers">
+       <strong>Numbers:</strong>
+      </p>
 
-        <div className="balls-row">
-          <div className="regular-balls">
-            {latest?.numbers?.map((num, i) => (
-              <span key={i} className="ball white-ball">
-                <strong>{num}</strong>
-              </span>
-            ))}
-          </div>
-          <div className="balls-bonus">
-            <p className="bonus-p"><strong>Bonus: </strong></p>
-            {latest?.bonus && (
-              <span className="ball bonus-ball">
-                <strong>{latest.bonus}</strong>
-              </span>
-            )}
-          </div> 
+      <div className="balls-row">
+        <div className="regular-balls">
+          {latest?.numbers?.map((num, i) => (
+            <span key={i} className="ball white-ball">
+              <strong>{num}</strong>
+            </span>
+          ))}
         </div>
+        <div className="balls-bonus">
+          <p className="bonus-p"><strong>Bonus: </strong></p>
+          {latest?.bonus && (
+            <span className="ball bonus-ball">
+              <strong>{latest.bonus}</strong>
+            </span>
+          )}
+        </div> 
       </div>
     </div>
   );

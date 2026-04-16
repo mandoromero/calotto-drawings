@@ -32,6 +32,10 @@
     font-size: 1.3rem;
 }
 
+.latest-draw-numbers {
+    font-size: 1.3rem;
+}
+
 .balls-row {
     display: flex;
     flex-direction: column;
@@ -49,15 +53,15 @@
 
 .balls-bonus {
     display: flex;
-    flex-directioin: row;
+    flex-directioin: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
     margin-top: 25px;
 }
 
-.balls-bonus-p {
-    margin-right: 20px;
+.bonus-p {
+    font-size: 1.3rem;
 }
 
 .ball {
@@ -70,6 +74,7 @@
     border: 1px solid black;
     border-radius: 50%;
     font-size: 14px;
+    font-weight: 800;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     transition: transform 0.2s ease;
 }

@@ -2,31 +2,47 @@
   margin-top: 20px;
 }
 
+/* SECTION SPACING */
 .section {
   margin-bottom: 20px;
 }
 
-.ball {
-    display: flex;
-    justifty-content: center;
-    align-items: center;
-
-    width: 34px;
-    height: 34px;
-}
-
-/* SINGLE NUMBERS */
-.balls-row {
+/* ------------------ */
+/* 🔢 TOP NUMBERS */
+/* ------------------ */
+.top-repeated-row {
   display: flex;
-  gap: 6px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-/* PAIRS */
+/* Make these balls too */
+.top-repeated {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+  border: 2px solid #333;
+
+  background-color: white;
+  color: #333;
+
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* ------------------ */
+/* 🔗 PAIRS */
+/* ------------------ */
 .pairs-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .pair-group {
@@ -35,12 +51,14 @@
   gap: 4px;
 }
 
-/* TRIPLETS */
+/* ------------------ */
+/* 🔺 TRIPLETS */
+/* ------------------ */
 .triplets-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .triplet-group {
@@ -49,8 +67,34 @@
   gap: 4px;
 }
 
-/* COMMA */
+/* ------------------ */
+/* 🎱 SHARED BALL STYLE */
+/* ------------------ */
+.ball {
+  display: flex;
+  justify-content: center;   /* ✅ fixed typo */
+  align-items: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+  border: 2px solid #333;
+
+  background-color: white;
+  color: #333;
+
+  font-weight: bold;
+  font-size: 14px;
+
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ------------------ */
+/* ✨ COMMA */
+/* ------------------ */
 .comma {
   margin-left: 4px;
   font-weight: bold;
+  font-size: 18px;
 }

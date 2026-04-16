@@ -35,6 +35,11 @@
     font-size: 5rem;
 }
 
+.bonus-ball {
+    background-color: blue;
+    color: white;
+}
+
 .lottery-jackpot {
     font-size: 1.5rem;
     margin-top: 30px;

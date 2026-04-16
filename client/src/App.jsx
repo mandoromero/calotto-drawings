@@ -3,6 +3,7 @@ import Home from "../src/pages/Home/Home";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "../src/components/Navbar/Navbar";
 import LotteryPage from "../src/pages/LotteryPage/LotteryPage";
+import Footer from "../src/components/Footer/Footer";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/:gameName" element={<LotteryPage />} />
             </Routes> 
+            <Footer />
         </div>
     );
 }

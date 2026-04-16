@@ -8,12 +8,10 @@ import "../Calculations/Calculations.css";
 
 export default function Calculations({ data }) {
 
-  // 🛑 SAFETY CHECK
   if (!data || !Array.isArray(data)) {
     return <p>No data available.</p>;
   }
 
-  // 📊 CALCULATIONS
   const topThreeNumbers = getTopThreeNumbers(data);
   const topThreePairs = getTopThreePairs(data);
   const topThreeTriplets = getTopThreeTriplets(data);
@@ -21,43 +19,61 @@ export default function Calculations({ data }) {
   return (
     <div className="calculations-container">
 
-      {/* 🔢 TOP 3 NUMBERS */}
+      {/* 🔢 TOP NUMBERS (3 BALLS) */}
       <div className="section">
         <h2>Top 3 Repeated Numbers</h2>
 
-        <div className="top-three">
+        <div className="top-repeated-row">
           {topThreeNumbers.map((num, index) => (
-            <span key={index} className="ball white-ball">
+            <span key={index} className="top-repeated">
               {num}
             </span>
           ))}
         </div>
       </div>
 
-      {/* 🔗 TOP 3 PAIRS */}
+      {/* 🔗 TOP PAIRS (6 BALLS) */}
       <div className="section">
         <h2>Top 3 Repeated Pairs</h2>
 
-        <div className="pairs-line">
+        <div className="pairs-row">
           {topThreePairs.map((pair, index) => (
-            <span key={index} className="pair-text">
-              {pair.map((num) => `[${num}]`).join("")}
-              {index !== topThreePairs.length - 1 && ", "}
-            </span>
+            <div key={index} className="pair-group">
+
+              {pair.map((num, i) => (
+                <span key={i} className="ball white-ball">
+                  {num}
+                </span>
+              ))}
+
+              {/* comma */}
+              {index !== topThreePairs.length - 1 && (
+                <span className="comma">,</span>
+              )}
+            </div>
           ))}
         </div>
       </div>
 
-      {/* 🔺 TOP 3 TRIPLETS */}
+      {/* 🔺 TOP TRIPLETS (9 BALLS) */}
       <div className="section">
         <h2>Top 3 Triplets</h2>
 
-        <div className="triplets-line">
+        <div className="triplets-row">
           {topThreeTriplets.map((triplet, index) => (
-            <span key={index} className="triplet-text">
-              {triplet.map((num) => `[${num}]`).join("")}
-              {index !== topThreeTriplets.length - 1 && ", "}
-            </span>
+            <div key={index} className="triplet-group">
+
+              {triplet.map((num, i) => (
+                <span key={i} className="ball white-ball">
+                  {num}
+                </span>
+              ))}
+
+              {/* comma */}
+              {index !== topThreeTriplets.length - 1 && (
+                <span className="comma">,</span>
+              )}
+            </div>
           ))}
         </div>
       </div>
