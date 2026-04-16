@@ -1,0 +1,56 @@
+.calculations-container {
+  margin-top: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.ball {
+    display: flex;
+    justifty-content: center;
+    align-items: center;
+
+    width: 34px;
+    height: 34px;
+}
+
+/* SINGLE NUMBERS */
+.balls-row {
+  display: flex;
+  gap: 6px;
+}
+
+/* PAIRS */
+.pairs-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.pair-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* TRIPLETS */
+.triplets-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.triplet-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* COMMA */
+.comma {
+  margin-left: 4px;
+  font-weight: bold;
+}
