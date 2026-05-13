@@ -46,16 +46,27 @@ export default function LotteryCard({ gameName }) {
 
   return (
     <div className="lottery-card-container">
+
       <Link to={`/${normalize(gameName)}`} className="lotto-title-link">
         <h2 className="lotto-title">{gameName}</h2>
       </Link>
 
       <p className="latest-draw-date">
-        <strong>Date:</strong> {latest?.drawDate || "N/A"}
+        <strong>Date:</strong>{" "}
+
+        <span className="drawDate">
+          {latest?.drawDate
+            ? new Date(latest.drawDate).toLocaleDateString("en-US", {
+                month: "2-digit",
+                day: "2-digit",
+                year: "numeric",
+              })
+            : "N/A"}
+        </span>
       </p>
 
       <p className="latest-draw-numbers">
-       <strong>Numbers:</strong>
+        <strong>Numbers:</strong>
       </p>
 
       <div className="balls-row">
@@ -66,15 +77,24 @@ export default function LotteryCard({ gameName }) {
             </span>
           ))}
         </div>
-        <div className="balls-bonus">
-          <p className="bonus-p"><strong>Bonus: </strong></p>
+      </div>
+
+      <div className="latest-bonus">
+        <div className="balls-bonus-row">
+
+          <p className="bonus-p">
+            <strong>Bonus:</strong>
+          </p>
+
           {latest?.bonus && (
             <span className="ball bonus-ball">
               <strong>{latest.bonus}</strong>
             </span>
           )}
-        </div> 
+
+        </div>
       </div>
+
     </div>
   );
 }

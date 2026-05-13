@@ -1,7 +1,8 @@
 import {
   getTopThreeNumbers,
   getTopThreePairs,
-  getTopThreeTriplets
+  getTopThreeTriplets,
+  getTopThreeBonusNumbers
 } from "../../utils/calculations";
 
 import "../Calculations/Calculations.css";
@@ -15,11 +16,12 @@ export default function Calculations({ data }) {
   const topThreeNumbers = getTopThreeNumbers(data);
   const topThreePairs = getTopThreePairs(data);
   const topThreeTriplets = getTopThreeTriplets(data);
+  const topThreeBonusNumbers = getTopThreeBonusNumbers(data);
 
   return (
     <div className="calculations-container">
 
-      {/* 🔢 TOP NUMBERS (3 BALLS) */}
+      {/* 🔢 TOP NUMBERS */}
       <div className="section">
         <h2>Top 3 Repeated Numbers</h2>
 
@@ -32,7 +34,7 @@ export default function Calculations({ data }) {
         </div>
       </div>
 
-      {/* 🔗 TOP PAIRS (6 BALLS) */}
+      {/* 🔗 TOP PAIRS */}
       <div className="section">
         <h2>Top 3 Repeated Pairs</h2>
 
@@ -46,7 +48,6 @@ export default function Calculations({ data }) {
                 </span>
               ))}
 
-              {/* comma */}
               {index !== topThreePairs.length - 1 && (
                 <span className="comma">,</span>
               )}
@@ -55,7 +56,7 @@ export default function Calculations({ data }) {
         </div>
       </div>
 
-      {/* 🔺 TOP TRIPLETS (9 BALLS) */}
+      {/* 🔺 TOP TRIPLETS */}
       <div className="section">
         <h2>Top 3 Triplets</h2>
 
@@ -69,11 +70,23 @@ export default function Calculations({ data }) {
                 </span>
               ))}
 
-              {/* comma */}
               {index !== topThreeTriplets.length - 1 && (
                 <span className="comma">,</span>
               )}
             </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ⭐ TOP BONUS NUMBERS */}
+      <div className="section">
+        <h2>Top 3 Bonus Numbers</h2>
+
+        <div className="top-repeated-row">
+          {topThreeBonusNumbers.map((num, index) => (
+            <span key={index} className="balls-bonus">
+              {num}
+            </span>
           ))}
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function PastResults({ data, title }) {
 
   return (
     <div className="past-results-container">
-      <h3>{title} - Past Results</h3>
+      <h3 className="page-title">{title} - Past Results</h3>    
 
       <div className="results-scroll">
         {/* GRID HEADER */}
@@ -38,7 +38,7 @@ export default function PastResults({ data, title }) {
 
               {/* DATE */}
               <div className="cell">
-                {draw.drawDate}
+                {new Date(draw.drawDate)/toLocalDateString("en-US")}
               </div>
 
               {/* NUMBERS */}

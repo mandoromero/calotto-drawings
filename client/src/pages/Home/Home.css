@@ -1,12 +1,13 @@
 .home-container {
-    padding: 0;
+    padding: 60px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 110px;
     margin-bottom: 325px;
-    margin-top: 75px
+    margin-top: 75px;
+    width: 100vw;
 }
 
 h1 {
@@ -15,11 +16,9 @@ h1 {
 
 .lottery-grid {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 100px;
-    max-with: 1000px;
-    margin: 0 auto;
+    width: 1200px;
+    gap: 50px;
 }
 
 .title {

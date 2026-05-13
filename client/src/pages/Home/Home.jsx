@@ -10,7 +10,7 @@ export default function Home() {
 
     return (
         <div className="home-container">
-            <h1 className="title">Welcome to the Home Page</h1>
+            <h1 className="title">California Lottery Winning Numbers</h1>
             <div className="lottery-grid">
                 {games.map((game) => (
                     <LotteryCard key={game} gameName={game} />

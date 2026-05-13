@@ -7,7 +7,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <h2 className="main-title">Calif. Lotto Drawings</h2>
+      <h2 className="main-title">California Lotto Drawings</h2>
 
       <div 
         className="select"

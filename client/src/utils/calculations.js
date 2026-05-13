@@ -18,7 +18,6 @@ export function getTopThreeNumbers(data) {
     .map(([num]) => num);
 }
 
-
 // -----------------------------
 // TOP 3 MOST FREQUENT PAIRS
 // -----------------------------
@@ -46,7 +45,6 @@ export function getTopThreePairs(data) {
     .slice(0, 3)
     .map(([pair]) => pair.split("-"));
 }
-
 
 // -----------------------------
 // TOP 3 MOST FREQUENT TRIPLETS
@@ -76,4 +74,26 @@ export function getTopThreeTriplets(data) {
     .sort((a, b) => b[1] - a[1])
     .slice(0, 3)
     .map(([triplet]) => triplet.split("-"));
+}
+
+// -----------------------------
+// TOP 3 MOST FREQUENT BONUS NUMBERS
+// -----------------------------
+export function getTopThreeBonusNumbers(data) {
+  if (!Array.isArray(data)) return [];
+
+  const frequency = {};
+
+  data.forEach((draw) => {
+    const bonus = draw.bonus;
+
+    if (bonus !== undefined && bonus !== null) {
+      frequency[bonus] = (frequency[bonus] || 0) + 1;
+    }
+  });
+
+  return Object.entries(frequency)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([num]) => num);
 }

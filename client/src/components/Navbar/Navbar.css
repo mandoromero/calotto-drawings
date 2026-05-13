@@ -3,7 +3,7 @@ nav {
     padding-left: 75px;
     padding-right: 75px;
     background-color: #131e3a;
-    color:
+    width: 100%;
 }
 
 .main-title {
@@ -16,6 +16,7 @@ nav {
     margin-bottom: auto;
     position: relative;
     width: 210px;
+}
 
 .dropdown-header {
     padding: 10px;
