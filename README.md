@@ -1,4 +1,4 @@
-All Winning numbers are inputed manually in to corisponding drawing in server data folder.  Super Lotto Plus, Mega Millions and Powerball
+All Winning numbers are inputed manually in to corresponding drawing in server data folder.  Super Lotto Plus, Mega Millions and Powerball
 
 To run: 
     1. cd server
@@ -7,3 +7,4 @@ To run:
     4. cd client
     5. npm run dev
 
+The App displays the latest winning numbers and give you the top 3 most winning numbers, the top 3 winning pair of numbers, the tip triples winning numbers and the tip 3 winning bounus numbers.
