@@ -38,7 +38,7 @@ export default function PastResults({ data, title }) {
 
               {/* DATE */}
               <div className="cell">
-                {new Date(draw.drawDate)/toLocalDateString("en-US")}
+                {new Date(draw.drawDate).toLocaleDateString("en-US")}
               </div>
 
               {/* NUMBERS */}

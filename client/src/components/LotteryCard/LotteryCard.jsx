@@ -57,11 +57,11 @@ export default function LotteryCard({ gameName }) {
         <span className="drawDate">
           {latest?.drawDate
             ? new Date(latest.drawDate).toLocaleDateString("en-US", {
-                month: "2-digit",
-                day: "2-digit",
-                year: "numeric",
-              })
-            : "N/A"}
+              month: "2-digit",
+              day: "2-digit",
+              year: "numeric",
+            })
+          : "N/A"}
         </span>
       </p>
 

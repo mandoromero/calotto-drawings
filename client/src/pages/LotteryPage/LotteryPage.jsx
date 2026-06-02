@@ -56,6 +56,7 @@ export default function LotteryPage() {
         </p>
 
         <div className="balls-row">
+          <p className="winning-numbers"><strong>Winning Numbers:</strong></p>
           <div className="regular-balls">
             {latest.numbers?.map((num, i) => (
               <span key={i} className="ball white-ball">
