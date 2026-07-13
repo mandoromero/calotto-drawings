@@ -7,4 +7,4 @@ To run:
     4. cd client
     5. npm run dev
 
-The App displays the latest winning numbers and give you the top 3 most winning numbers, the top 3 winning pair of numbers, the tip triples winning numbers and the tip 3 winning bounus numbers.
+The App displays the latest winning numbers and give you the top 3 most winning numbers, the top 3 winning pair of numbers, the top triples winning numbers and the top 3 winning bounus numbers.
