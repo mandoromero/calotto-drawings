@@ -7,16 +7,24 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
+
 app.use(express.json());
 
-// All games through one route
+// All lottery games
 app.use("/api/lotto", lottoRoutes);
 
+// Test route
 app.get("/", (req, res) => {
   res.send("CALotto API running");
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = 5001;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
