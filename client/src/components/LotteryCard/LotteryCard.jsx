@@ -44,6 +44,11 @@ export default function LotteryCard({ gameName }) {
 
   const latest = data[0];
 
+  console.log("GAME:", gameName);
+  console.log("LATEST DRAW:", latest);
+  console.log("NUMBERS:", latest?.numbers);
+  console.log("BONUS:", latest?.bonus);
+
   return (
     <div className="lottery-card-container">
 
