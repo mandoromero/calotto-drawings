@@ -1,7 +1,9 @@
 import "../PastResults/PastResults.css";
 
 export default function PastResults({ data, title }) {
-  if (!data) return <p>No past results available.</p>;
+  if (!data) {
+    return <p>No past results available.</p>;
+  }
 
   const results = Array.isArray(data) ? data : [];
 
@@ -9,16 +11,77 @@ export default function PastResults({ data, title }) {
     return <p>No past results available.</p>;
   }
 
-  const cutoffDate = new Date();
-  cutoffDate.setMonth(cutoffDate.getMonth() - 3);
+  // Get YYYY-MM-DD without timezone conversion
+  const getDateString = (date) => {
+    if (!date) {
+      return null;
+    }
 
-  const filteredResults = results
-    .filter((draw) => new Date(draw.drawDate) >= cutoffDate)
-    .sort((a, b) => new Date(b.drawDate) - new Date(a.drawDate));
+    const dateString = String(date).split("T")[0];
+    const [year, month, day] = dateString.split("-");
+
+    if (!year || !month || !day) {
+      return null;
+    }
+
+    return dateString;
+  };
+
+  // Format date for display
+  const formatDate = (date) => {
+    const dateString = getDateString(date);
+
+    if (!dateString) {
+      return "N/A";
+    }
+
+    const [year, month, day] = dateString.split("-");
+
+    return new Date(
+      Number(year),
+      Number(month) - 1,
+      Number(day)
+    ).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
+  /*
+   * Sort ALL results from newest to oldest.
+   *
+   * Example:
+   *
+   * Sep 21  <-- latest draw / Lottery Card
+   * Sep 19  <-- Past Results
+   * Sep 17  <-- Past Results
+   * Sep 14  <-- Past Results
+   * Sep 12  <-- Past Results
+   * ...
+   */
+  const sortedResults = results
+    .filter((draw) => getDateString(draw.drawDate))
+    .sort((a, b) => {
+      const dateA = getDateString(a.drawDate);
+      const dateB = getDateString(b.drawDate);
+
+      return dateB.localeCompare(dateA);
+    });
+
+  /*
+   * Remove the newest result.
+   *
+   * The newest result belongs on the Lottery Card.
+   * Everything after it belongs in Past Results.
+   */
+  const previousResults = sortedResults.slice(1);
 
   return (
     <div className="past-results-container">
-      <h3 className="page-title">{title} - Past Results</h3>    
+      <h3 className="page-title">
+        {title} - Past Results
+      </h3>
 
       <div className="results-scroll">
         {/* GRID HEADER */}
@@ -30,34 +93,35 @@ export default function PastResults({ data, title }) {
         </div>
 
         {/* GRID ROWS */}
-        {filteredResults.length === 0 ? (
-          <p>No recent results found.</p>
+        {previousResults.length === 0 ? (
+          <p>No past results available.</p>
         ) : (
-          filteredResults.map((draw, index) => (
-            <div key={index} className="results-grid row">
-
+          previousResults.map((draw, index) => (
+            <div
+              key={`${draw.drawDate}-${index}`}
+              className="results-grid row"
+            >
               {/* DATE */}
               <div className="cell">
-                {new Date(draw.drawDate).toLocaleDateString("en-US")}
+                {formatDate(draw.drawDate)}
               </div>
 
-              {/* NUMBERS */}
+              {/* WINNING NUMBERS */}
               <div className="cell numbers">
                 {Array.isArray(draw.numbers)
                   ? draw.numbers.join(", ")
                   : "N/A"}
               </div>
 
-              {/* BONUS */}
+              {/* BONUS NUMBER */}
               <div className="cell">
-                {draw.bonus || "N/A"}
+                {draw.bonus ?? "N/A"}
               </div>
 
               {/* JACKPOT */}
               <div className="cell">
-                {draw.jackpot || "N/A"}
+                {draw.jackpot ?? "N/A"}
               </div>
-
             </div>
           ))
         )}

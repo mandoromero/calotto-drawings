@@ -1,9 +1,33 @@
 [
   {
+    "drawDate": "2026-08-01",
+    "numbers": ["6", "17", "27", "48", "57"],
+    "bonus": "5",
+    "jackpot": "$707 Million"
+  },
+  {
+    "drawDate": "2026-07-29",
+    "numbers": ["30", "36", "40", "42", "57"],
+    "bonus": "2",
+    "jackpot": "$663 Million"
+  },
+  {
+    "drawDate": "2026-07-27",
+    "numbers": ["6", "26", "46", "58", "65"],
+    "bonus": "25",
+    "jackpot": "$633 Million"
+  },
+  {
+    "drawDate": "2026-07-25",
+    "numbers": ["3", "4", "24", "36", "47"],
+    "bonus": "17",
+    "jackpot": "$600 Million"
+  },
+  {
     "drawDate": "2026-07-22",
-    "numbers": ["4", "5", "22", "50", "48"],
+    "numbers": ["4", "5", "22", "50", "58"],
     "bonus": "1",
-    "jackpot": "$480 Million"
+    "jackpot": "$567 Million"
   },
   {
     "drawDate": "2026-07-20",
