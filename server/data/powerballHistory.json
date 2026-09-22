@@ -1,5 +1,89 @@
 [
   {
+    "drawDate": "2026-09-02",
+    "numbers": ["3", "10", "29", "58", "64"],
+    "bonus": "14",
+    "jackpot": "$146 Million"
+  },
+  {
+    "drawDate": "2026-08-31",
+    "numbers": ["11", "17", "25", "37", "49"],
+    "bonus": "10",
+    "jackpot": "$131 Million"
+  },
+  {
+    "drawDate": "2026-08-29",
+    "numbers": ["18", "56", "62", "65", "67"],
+    "bonus": "18",
+    "jackpot": "$119 Million"
+  },
+  {
+    "drawDate": "2026-08-26",
+    "numbers": ["12", "32", "45", "50", "58"],
+    "bonus": "2",
+    "jackpot": "$96 Million"
+  },
+  {
+    "drawDate": "2026-08-24",
+    "numbers": ["3", "16", "33", "38", "68"],
+    "bonus": "2",
+    "jackpot": "$81 Million"
+  },
+  {
+    "drawDate": "2026-08-22",
+    "numbers": ["13", "31", "54", "57", "65"],
+    "bonus": "23",
+    "jackpot": "$68 Million"
+  },
+  {
+    "drawDate": "2026-08-19",
+    "numbers": ["10", "21", "58", "61", "64"],
+    "bonus": "17",
+    "jackpot": "$48 Million"
+  },
+  {
+    "drawDate": "2026-08-17",
+    "numbers": ["8", "15", "25", "49", "65"],
+    "bonus": "22",
+    "jackpot": "$35 Million"
+  },
+  {
+    "drawDate": "2026-08-05",
+    "numbers": ["5", "8", "27", "29", "63"],
+    "bonus": "13",
+    "jackpot": "$20 Million"
+  },
+  {
+    "drawDate": "2026-08-12",
+    "numbers": ["4", "26", "66", "67", "69"],
+    "bonus": "9",
+    "jackpot": "$1 Billion"
+  },
+  {
+    "drawDate": "2026-08-10",
+    "numbers": ["6", "37", "54", "55", "64"],
+    "bonus": "10",
+    "jackpot": "$905 Million"
+  },
+  {
+    "drawDate": "2026-08-08",
+    "numbers": ["5", "9", "35", "54", "63"],
+    "bonus": "7",
+    "jackpot": "$856 Million"
+  },
+  {
+    "drawDate": "2026-08-05",
+    "numbers": ["14", "20", "59", "60", "61"],
+    "bonus": "25",
+    "jackpot": "$786 Million"
+  },
+  {
+    "drawDate": "2026-08-03",
+    "numbers": ["8", "30", "41", "48", "54"],
+    "bonus": "4",
+    "jackpot": "$748 Million"
+  },
+  {
     "drawDate": "2026-08-01",
     "numbers": ["6", "17", "27", "48", "57"],
     "bonus": "5",
