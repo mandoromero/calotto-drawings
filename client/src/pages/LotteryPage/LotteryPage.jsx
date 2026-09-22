@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { fetchLotteryGame } from "../../store/lotterySlice";
 import { normalize } from "../../utils";
 
+// import LotteryCard from "../../components/LotteryCard/LotteryCard";
 import PastResults from "../../components/PastResults/PastResults";
 import Calculations from "../../components/Calculations/Calculations";
 
