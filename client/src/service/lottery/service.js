@@ -17,3 +17,25 @@ export async function fetchLotteryData(game) {
 
   return data;
 }
+
+
+// Fantasy Five
+export async function fetchFantasyFiveData() {
+  const url = "http://localhost:5001/api/lotto/fantasy-five";
+
+  console.log("FETCHING FANTASY FIVE:", url);
+
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error(
+      `Failed to fetch Fantasy Five: ${res.status} ${res.statusText}`
+    );
+  }
+
+  const data = await res.json();
+
+  console.log("RECEIVED FANTASY FIVE:", data);
+
+  return data;
+}

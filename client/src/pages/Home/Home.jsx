@@ -1,6 +1,6 @@
 import "../Home/Home.css";
 import LotteryCard from "../../components/LotteryCard/LotteryCard"
-import DailyLotteryCard from "../../components/DailyLotteryCard/DailyLotteryCard";
+import FantasyFive from "../../components/FantasyFive/FantasyFive";
 
 export default function Home() {
     const games = [
@@ -14,7 +14,7 @@ export default function Home() {
             <h1 className="title">California Lottery Winning Numbers</h1>
             <h2>Daily Lottery Results</h2>
             <div className="daily-lottery-grid">
-                <DailyLotteryCard />
+                <FantasyFive />
             </div>
             <h2>Lottery Results</h2>
             <div className="lottery-grid">
