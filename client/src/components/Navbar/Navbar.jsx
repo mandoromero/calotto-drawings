@@ -25,6 +25,11 @@ export default function Navbar() {
             <Link to="/home" className="dropdown-item" onClick={() => setOpen(false)}>
               Home
             </Link>
+
+            <Link to="/fantasy-five" className="dropdown-item" onClick={() => setOpen(false)}>
+              Fantasy 5
+            </Link>
+            
             <Link to="/super-lotto-plus" className="dropdown-item" onClick={() => setOpen(false)}>
               Super Lotto Plus
             </Link>

@@ -1,5 +1,83 @@
 [
   {
+    "drawDate": "2026-11-14",
+    "numbers": ["09", "44", "49", "51", "68"],
+    "bonus": "04",
+    "jackpot": "$63 Million"
+  },
+  {
+    "drawDate": "2026-11-11",
+    "numbers": ["08", "42", "45", "51", "57"],
+    "bonus": "17",
+    "jackpot": "$45 Million"
+  },
+  {
+    "drawDate": "2026-11-09",
+    "numbers": ["13", "34", "41", "45", "48"],
+    "bonus": "25",
+    "jackpot": "$30 Million"
+  },
+  {
+    "drawDate": "2026-11-07",
+    "numbers": ["03", "36", "37", "56", "61"],
+    "bonus": "21",
+    "jackpot": "$20 Million"
+  },
+  {
+    "drawDate": "2026-11-04",
+    "numbers": ["15", "34", "41", "53", "56"],
+    "bonus": "21",
+    "jackpot": "$835 Million"
+  },
+  {
+    "drawDate": "2026-11-02",
+    "numbers": ["07", "23", "29", "64", "66"],
+    "bonus": "23",
+    "jackpot": "$793 Million"
+  },
+  {
+    "drawDate": "2026-10-31",
+    "numbers": ["02", "04", "18", "50", "56"],
+    "bonus": "20",
+    "jackpot": "$760 Million"
+  },
+  {
+    "drawDate": "2026-10-28",
+    "numbers": ["11", "13", "16", "47", "60"],
+    "bonus": "13",
+    "jackpot": "$716 Million"
+  },
+  {
+    "drawDate": "2026-10-26",
+    "numbers": ["18", "26", "49", "50", "54"],
+    "bonus": "01",
+    "jackpot": "$687 Million"
+  },
+  {
+    "drawDate": "2026-10-24",
+    "numbers": ["04", "05", "15", "19", "55"],
+    "bonus": "19",
+    "jackpot": "$674 Million"
+  },
+  {
+    "drawDate": "2026-10-21",
+    "numbers": ["01", "21", "44", "50", "57"],
+    "bonus": "05",
+    "jackpot": "$635 Million"
+  },
+  {
+    "drawDate": "2026-10-19",
+    "numbers": ["08", "31", "32", "42", "48"],
+    "bonus": "23",
+    "jackpot": "$607 Million"
+  },
+  {
+    "drawDate": "2026-10-17",
+    "numbers": ["12", "13", "24", "32", "35"],
+    "bonus": "11",
+    "jackpot": "$600 Million"
+  },
+  {
     "drawDate": "2026-10-14",
     "numbers": ["46", "42", "37", "34", "3"],
     "bonus": "20",
