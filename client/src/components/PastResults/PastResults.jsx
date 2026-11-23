@@ -50,15 +50,6 @@ export default function PastResults({ data, title }) {
 
   /*
    * Sort ALL results from newest to oldest.
-   *
-   * Example:
-   *
-   * Sep 21  <-- latest draw / Lottery Card
-   * Sep 19  <-- Past Results
-   * Sep 17  <-- Past Results
-   * Sep 14  <-- Past Results
-   * Sep 12  <-- Past Results
-   * ...
    */
   const sortedResults = results
     .filter((draw) => getDateString(draw.drawDate))
